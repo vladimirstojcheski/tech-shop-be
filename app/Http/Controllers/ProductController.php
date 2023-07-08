@@ -61,6 +61,10 @@ class ProductController extends Controller
         return $allProducts;
     }
 
+    public function getAllByCategory($id) {
+        return $allProductsByCategory = Product::where("category_id", $id)->get();
+    }
+
     /**
      * Show the form for editing the specified resource.
      *

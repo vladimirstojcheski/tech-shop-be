@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\SubCategoryController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
@@ -20,4 +22,9 @@ use App\Http\Controllers\ProductController;
 //});
 
 Route::resource('product/add', ProductController::class)->middleware('auth');
-Route::get("/product/all", [ProductController::class, "getAll"]);
+Route::get("/products/all", [ProductController::class, "getAll"]);
+Route::get("/products/{id}/all", [ProductController::class, "getAllByCategory"]);
+
+Route::get("/categories/sub/all", [SubCategoryController::class, "getAll"]);
+
+Route::get("/categories/all", [CategoryController::class, "getAll"]);

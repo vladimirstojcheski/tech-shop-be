@@ -14,6 +14,11 @@ class Product extends Model
         'price',
         'description',
         'img',
-        'category'
+        'category',
+        'quantity'
     ];
+
+    public function subCategory() {
+        return $this->hasOne(SubCategory::class, 'parent_category_id');
+    }
 }
