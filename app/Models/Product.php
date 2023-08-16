@@ -15,10 +15,14 @@ class Product extends Model
         'description',
         'img',
         'category',
-        'quantity'
+        'quantity',
     ];
 
     public function subCategory() {
-        return $this->hasOne(SubCategory::class, 'parent_category_id');
+        return $this->hasOne(SubCategory::class, 'id', "category_id");
+    }
+
+    public function manufacturer() {
+        return $this->belongsTo(Manufacturer::class, 'id', 'manufacturer');
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\GetProductRequest;
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
 use App\Models\Product;
@@ -57,7 +58,20 @@ class ProductController extends Controller
     }
 
     public function getAll() {
-        $allProducts = Product::get();
+        $allProducts = Product::with('manufacturer')->get();
+        dd($allProducts[0]->manufacturer);
+        return $allProducts;
+    }
+
+    public function getAllF(GetProductRequest $request)
+    {
+        $search = $request->search;
+        $list = $search['manufacturers'];
+        if (sizeof($list) > 0) {
+            $allProducts = Product::whereIn("manufacturer_id", $list)->get();
+        } else {
+            $allProducts = Product::get();
+        }
         return $allProducts;
     }
 

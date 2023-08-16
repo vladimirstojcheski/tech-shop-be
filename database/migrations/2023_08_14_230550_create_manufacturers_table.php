@@ -13,8 +13,15 @@ return new class extends Migration
      */
     public function up()
     {
-//        Schema::table('products', function (Blueprint $table) {
-//            $table->integer('quantity');
+//        Schema::create('manufacturers', function (Blueprint $table) {
+//            $table->id();
+//            $table->string("name");
+//            $table->unsignedInteger('sub_category_id');
+//            $table->foreign('sub_category_id')
+//                ->references('id')
+//                ->on('sub_categories')
+//                ->onDelete('cascade');
+//            $table->timestamps();
 //        });
     }
 
@@ -26,7 +33,7 @@ return new class extends Migration
     public function down()
     {
         Schema::table('products', function (Blueprint $table) {
-            //
+            $table->dropColumn('manufacturer');
         });
     }
 };
