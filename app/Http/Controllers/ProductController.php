@@ -59,18 +59,20 @@ class ProductController extends Controller
 
     public function getAll() {
         $allProducts = Product::with('manufacturer')->get();
-        dd($allProducts[0]->manufacturer);
         return $allProducts;
     }
 
     public function getAllF(GetProductRequest $request)
     {
         $search = $request->search;
-        $list = $search['manufacturers'];
-        if (sizeof($list) > 0) {
-            $allProducts = Product::whereIn("manufacturer_id", $list)->get();
-        } else {
-            $allProducts = Product::get();
+        $listMan = $search['manufacturers'];
+        $cat = $search['category'];
+        if (isset($cat)) {
+            if (sizeof($listMan) > 0) {
+                $allProducts = Product::where("category_id", $cat)->whereIn("manufacturer_id", $listMan)->get();
+            } else {
+                $allProducts = Product::where("category_id", $cat)->get();
+            }
         }
         return $allProducts;
     }

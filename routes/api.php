@@ -30,5 +30,6 @@ Route::get("/categories/all", [CategoryController::class, "getAll"]);
 Route::get("/manufacturers/{id}", [ManufacturerController::class, "getAllByCategory"]);
 
 Route::post("/products/all", [ProductController::class, "getAllF"]);
+Route::post("/manufacturers/all", [ManufacturerController::class, "getAllByProducts"]);
 
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\GetProductRequest;
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
 use App\Models\Manufacturer;
@@ -56,8 +57,17 @@ class ManufacturerController extends Controller
 
         }
 
-        public function getAllF() {
-
+        public function getAllByProducts(GetProductRequest $request) {
+            $search = $request->search;
+            $listMan = $search['manufacturersToFilter'];
+            if (isset($listMan)) {
+                if (sizeof($listMan) > 0) {
+                    $allManu = Manufacturer::whereIn("id", $listMan)->get();
+                } else {
+                    $allManu = Manufacturer::get();
+                }
+            }
+            return $allManu;
         }
 
         public function getAllByCategory($id) {
