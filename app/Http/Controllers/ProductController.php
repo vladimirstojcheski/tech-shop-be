@@ -6,6 +6,7 @@ use App\Http\Requests\GetProductRequest;
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
 use App\Models\Product;
+use App\Models\SubCategory;
 use Illuminate\Http\Response;
 
 class ProductController extends Controller
@@ -38,12 +39,30 @@ class ProductController extends Controller
      */
     public function store(StoreProductRequest $request)
     {
-        $data = $request->all();
-        $post = Product::create($data);
-        if ($post) {
-            return $data;
-        }
-        return redirect()->back();
+
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \App\Http\Requests\StoreProductRequest  $request
+     * @return \Illuminate\Http\Response
+     */
+
+    public function createProduct(StoreProductRequest $request) {
+        $validatedData = $request->validated();
+        // Handle image upload and store the image path
+        $imagePath = $request->file('img')->store('products', 'public');
+        // Create the product
+        $product = Product::create([
+            'title' => $validatedData['title'],
+            'img' => $imagePath, // Store the image path
+            'description' => $validatedData['description'],
+            'price' => $validatedData['price'],
+            'category_id' => (int)$validatedData['category_id'],
+            'manufacturer_id' => (int)$validatedData['manufacturer_id']
+        ]);
+        return response()->json(['message' => 'Product created successfully']);
     }
 
     /**

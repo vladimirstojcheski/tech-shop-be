@@ -22,7 +22,7 @@ use App\Http\Controllers\ProductController;
 //    return $request->user();
 //});
 
-Route::resource('product/add', ProductController::class)->middleware('auth');
+//Route::resource('product/add', ProductController::class)->middleware('auth');
 Route::get("/products/all", [ProductController::class, "getAll"]);
 Route::get("/products/{id}/all", [ProductController::class, "getAllByCategory"]);
 Route::get("/products/{id}", [ProductController::class, "getById"]);
@@ -33,5 +33,6 @@ Route::get("/manufacturers/{id}", [ManufacturerController::class, "getAllByCateg
 
 Route::post("/products/all", [ProductController::class, "getAllF"]);
 Route::post("/manufacturers/all", [ManufacturerController::class, "getAllByProducts"]);
+Route::post("/products/create", [ProductController::class, "createProduct"]);
 
 
