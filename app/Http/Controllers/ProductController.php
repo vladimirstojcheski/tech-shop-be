@@ -93,6 +93,9 @@ class ProductController extends Controller
                 $allProducts = Product::where("category_id", $cat)->get();
             }
         }
+        foreach ($allProducts as $product) {
+            $product->img = asset('storage/' . $product->img);
+        }
         return $allProducts;
     }
 
@@ -102,6 +105,9 @@ class ProductController extends Controller
 
     public function getById($id) {
         $product = Product::where("id", $id)->get();
+        foreach ($product as $p) {
+            $p->img = asset('storage/' . $p->img);
+        }
         return $product;
     }
 
