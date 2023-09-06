@@ -77,7 +77,10 @@ class ProductController extends Controller
     }
 
     public function getAll() {
-        $allProducts = Product::with('manufacturer')->get();
+        $allProducts = Product::get();
+        foreach ($allProducts as $product) {
+            $product->img = asset('storage/' . $product->img);
+        }
         return $allProducts;
     }
 
@@ -86,12 +89,14 @@ class ProductController extends Controller
         $search = $request->search;
         $listMan = $search['manufacturers'];
         $cat = $search['category'];
-        if (isset($cat)) {
+        if (isset($cat) && $cat != 0) {
             if (sizeof($listMan) > 0) {
                 $allProducts = Product::where("category_id", $cat)->whereIn("manufacturer_id", $listMan)->get();
             } else {
                 $allProducts = Product::where("category_id", $cat)->get();
             }
+        } else {
+            $allProducts = Product::whereIn("manufacturer_id", $listMan)->get();
         }
         foreach ($allProducts as $product) {
             $product->img = asset('storage/' . $product->img);

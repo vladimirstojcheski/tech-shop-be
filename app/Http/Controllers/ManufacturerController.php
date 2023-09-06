@@ -54,8 +54,10 @@ class ManufacturerController extends Controller
         }
 
         public function getAll() {
-
+            $allManu = Manufacturer::get();
+            return $allManu;
         }
+
 
         public function getAllByProducts(GetProductRequest $request) {
             $search = $request->search;
