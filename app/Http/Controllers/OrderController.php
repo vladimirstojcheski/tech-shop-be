@@ -2,14 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\OrderDetails;
 use App\Models\Order;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class OrderController extends Controller
 {
     public function create(Request $request)
     {
-
+        $frontendHost = config('app.frontend_host');
         $uniqueOrderNumber = Order::generateUniqueOrderNumber();
         // Validate the request data
         $validatedData = $request->validate([
@@ -45,7 +47,9 @@ class OrderController extends Controller
         $order->products()->attach($validatedData['products'], ['quantity' => $quantity,
             'unit_price' => $unitPrice,]);
 
-        return response()->json(['message' => 'Order created successfully'], 201);
+        Mail::to($order->email)->send(new OrderDetails($order, $frontendHost));
+
+        return response()->json(['message' => 'Order created successfully', 'orderId' => $order->id], 201);
     }
 
     public function getOrderWithProducts($orderId)
@@ -56,6 +60,10 @@ class OrderController extends Controller
         // If the order does not exist, return an error response or handle it as needed
         if (!$order) {
             return response()->json(['message' => 'Order not found'], 404);
+        }
+
+        foreach ($order['products'] as $product) {
+            $product->img = asset('storage/' . $product->img);
         }
 
         // Now, you can access the order and its related products

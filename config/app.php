@@ -212,4 +212,6 @@ return [
         // 'ExampleClass' => App\Example\ExampleClass::class,
     ])->toArray(),
 
+    'frontend_host' => env('FRONTEND_HOST'),
+
 ];
