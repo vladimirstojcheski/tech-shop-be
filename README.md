@@ -1,6 +1,6 @@
-# TechShop Frontend
+# TechShop Backend
 
-![TechShop Logo](documentation/logo.png)
+![TechShop Logo](documentation-be/logo.png)
 
 ## Table of Contents
 
