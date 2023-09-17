@@ -11,6 +11,10 @@ use Illuminate\Http\Response;
 
 class ProductController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth:api', ['except' => ['getAll', 'getAllFiltered', 'getAllByCategory', 'getById']]);//login, register methods won't go through the api guard
+    }
     /**
      * Display a listing of the resource.
      *
@@ -50,6 +54,10 @@ class ProductController extends Controller
      */
 
     public function createProduct(StoreProductRequest $request) {
+        $user = auth()->user();
+        if ($user == null) {
+            response()->json(['error' => 'Unauthorized'], 401);
+        }
         $validatedData = $request->validated();
         // Handle image upload and store the image path
         $imagePath = $request->file('img')->store('products', 'public');
@@ -84,7 +92,7 @@ class ProductController extends Controller
         return $allProducts;
     }
 
-    public function getAllF(GetProductRequest $request)
+    public function getAllFiltered(GetProductRequest $request)
     {
         $search = $request->search;
         $listMan = $search['manufacturers'];

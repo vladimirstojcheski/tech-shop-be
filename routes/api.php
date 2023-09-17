@@ -1,9 +1,11 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ManufacturerController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\SubCategoryController;
+use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
@@ -29,14 +31,24 @@ Route::get("/products/{id}/all", [ProductController::class, "getAllByCategory"])
 Route::get("/products/{id}", [ProductController::class, "getById"]);
 Route::get("/order/{id}", [OrderController::class, "getOrderWithProducts"]);
 
+
 Route::get("/categories/sub/all", [SubCategoryController::class, "getAll"]);
 Route::get("/categories/all", [CategoryController::class, "getAll"]);
 Route::get("/manufacturers/{id}", [ManufacturerController::class, "getAllByCategory"]);
 Route::get("/manufacturers", [ManufacturerController::class, "getAll"]);
 
-Route::post("/products/all", [ProductController::class, "getAllF"]);
+Route::post("/products/all", [ProductController::class, "getAllFiltered"]);
 Route::post("/manufacturers/all", [ManufacturerController::class, "getAllByProducts"]);
 Route::post("/products/create", [ProductController::class, "createProduct"]);
 Route::post("/order/create", [OrderController::class, "create"]);
+
+Route::middleware(['api'])->group(function() {
+    Route::post('/login', [AuthController::class, 'login']);
+    Route::get('/logout', [AuthController::class, 'logout']);
+    Route::post('/register', [AuthController::class, 'register']);
+    Route::get('/getaccount', [AuthController::class, 'getaccount']);
+    Route::get('/profile', [UserController::class, 'getUserProfile']);
+    Route::put('/profile/edit', [UserController::class, 'update']);
+});
 
 

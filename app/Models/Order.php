@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Str;
 
 class Order extends Model
@@ -18,12 +19,18 @@ class Order extends Model
         'zip_code',
         'order_number',
         'total_amount',
+        'user_id'
         // Add other columns as needed
     ];
 
     public function products()
     {
         return $this->belongsToMany(Product::class)->withPivot('quantity', 'unit_price');;
+    }
+
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
     }
 
     public static function generateUniqueOrderNumber()

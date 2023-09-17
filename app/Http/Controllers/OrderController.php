@@ -6,11 +6,22 @@ use App\Mail\OrderDetails;
 use App\Models\Order;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
+use JWTAuth;
 
 class OrderController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth:api', ['except' => ['getOrderWithProducts']]);//login, register methods won't go through the api guard
+    }
+
     public function create(Request $request)
     {
+        $user = auth()->user();
+        if ($user == null) {
+            response()->json(['error' => 'Unauthorized'], 401);
+        }
         $frontendHost = config('app.frontend_host');
         $uniqueOrderNumber = Order::generateUniqueOrderNumber();
         // Validate the request data
@@ -38,7 +49,8 @@ class OrderController extends Controller
             'street_name' => $validatedData['streetName'],
             'zip_code' => $validatedData['zip_code'],
             'total_amount' => $validatedData['total_amount'],
-            'order_number' => $uniqueOrderNumber
+            'order_number' => $uniqueOrderNumber,
+            'user_id' => $user['id']
         ]);
 
         $quantity = 5;
