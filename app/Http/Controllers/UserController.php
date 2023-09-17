@@ -23,8 +23,6 @@ class UserController extends Controller
     {
         $userAuth = auth()->user();
         $user = User::find($userAuth['id']);
-        echo $user;
-        // Validate the input data
         $validatedData = $request->validate([
             'country' => 'nullable|string',
             'city' => 'nullable|string',
@@ -33,7 +31,6 @@ class UserController extends Controller
             'phone_number' => 'nullable|string',
         ]);
 
-        // Update the user's profile with the validated data
         $user->update($validatedData);
 
         return response()->json([
