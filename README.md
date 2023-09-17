@@ -1,66 +1,310 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# TechShop Backend
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+![TechShop Logo](documentation-be/logo.png)
 
-## About Laravel
+## Table of Contents
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+- [Project Overview](#project-overview)
+- [Getting Started](#getting-started)
+  - [Prerequisites](#prerequisites)
+  - [Installation](#installation)
+  - [Running](#running)
+- [Usage](#usage)
+- [Project Structure](#project-structure)
+- [Technologies Used](#technologies-used)
+- [Fronted Application](#frontend-application)
+- [Contact Information](#contact-information)
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Project Overview
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+TechShop Backend (API) serves as the foundational component of the TechShop online shopping platform. Its primary purpose is to provide a set of APIs that follow the Model-View-Controller (MVC) pattern, offering essential data and functionality for the TechShop Frontend application.
 
-## Learning Laravel
+TechShop Backend (API) plays a crucial role in the TechShop ecosystem, offering the following key functionalities:
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+- **Data Management:** It manages and organizes product data, user profiles, orders, and other essential information necessary for the operation of the TechShop online store.
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+- **API Endpoints:** It provides a comprehensive set of API endpoints that TechShop Frontend interacts with to fetch and manipulate data. These endpoints include product listings, order management, and more.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+- **Email Notifications:** The backend also includes email notification functionality, sending completion emails to customers for their orders.
 
-## Laravel Sponsors
+By following the MVC pattern, the backend API promotes separation of concerns, maintainability, and scalability. It acts as the bridge between the frontend and the database, facilitating seamless data exchange and user interactions within the TechShop platform.
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+## Getting Started
 
-### Premium Partners
+To get started with TechShop Backend (API) and run it on your local machine, follow these steps:
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+### Prerequisites
 
-## Contributing
+Before you begin, ensure you have the following prerequisites installed:
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+- **PHP**: Laravel 9 requires PHP. You can download it from [php.net](https://www.php.net/downloads.php).
 
-## Code of Conduct
+- **Composer**: Laravel uses Composer for package management. You can install it from [getcomposer.org](https://getcomposer.org/download/).
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+- **Database**: Set up a database system of your choice (e.g., MySQL, PostgreSQL, SQLite) and create a database for the application.
 
-## Security Vulnerabilities
+- **Web Server**: You can use Laravel's built-in development server or set up a web server (e.g., Apache, Nginx) to serve the application.
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+### Installation
 
-## License
+1. Clone the repository to your local machine using your preferred method (HTTPS or SSH):
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+   ```bash
+   git clone https://github.com/vladimirstojcheski/tech-shop-be.git
+   ```
+2. Change your current directory to the project's root folder:
+
+   ```bash
+   cd tech-shop-be
+   ```
+3. Create a .env file by copying the example:
+
+   ```bash
+   cp .env.example .env
+   ```
+4. Open the .env file and configure your database connection settings.
+5. Install the project dependencies using Composer:
+
+   ```bash
+   composer install
+   ```
+6. Generate a unique application key:
+
+   ```bash
+   php artisan key:generate
+   ```
+7. Run the database migrations to create the necessary tables:
+
+   ```bash
+   php artisan migrate
+   ```
+8. To host the images in the storage run:
+
+   ```bash
+   php artisan storage:link
+   ```
+9. Optionally, you can seed the database with sample data:
+
+   ```bash
+   php artisan db:seed
+   ```
+
+### Running
+
+1. Once the installation is complete, you can start the development server:
+
+   ```bash
+   php artisan serve
+   ```
+The application will be available at http://localhost:8000.
+
+## Usage
+
+TechShop Backend (API) offers a set of API endpoints to interact with the application's data and functionality. Below is a list of available endpoints and their descriptions:
+
+### Products
+
+- **Get All Products**
+  - Endpoint: `/products`
+  - Method: GET
+  - Description: Retrieve a list of all available products.
+
+- **Get Products by Category**
+  - Endpoint: `/products/{id}/all`
+  - Method: GET
+  - Description: Retrieve all products within a specific category identified by `{id}`.
+
+- **Get Product by ID**
+  - Endpoint: `/products/{id}`
+  - Method: GET
+  - Description: Retrieve detailed information about a specific product identified by `{id}`.
+
+- **Create Product**
+  - Endpoint: `/products/create`
+  - Method: POST
+  - Description: Create a new product.
+  - Request Body: Include product details such as name, description, price, and any other required information.
+  
+    **Curl request**:
+    
+    ```bash
+    curl --location --request POST 'http://localhost:8000/api/products/create' \
+    --header 'Content-Type: multipart/form-data' \
+    --form 'title="Test"' \
+    --form 'description="test"' \
+    --form 'price="200"' \
+    --form 'category_id="2"' \
+    --form 'manufacturer_id="1"' \
+    --form 'img=@"path_to_your_image.jpg"'
+    ```
+
+### Orders
+
+- **Get Order with Products**
+  - Endpoint: `/order/{id}`
+  - Method: GET
+  - Description: Retrieve an order's details, including the products associated with it, identified by `{id}`.
+
+- **Create Order**
+  - Endpoint: `/order/create`
+  - Method: POST
+  - Description: Create a new order.
+  - Request Body: Include order details, customer information, and the list of products in the order.
+  
+    **Example Request Body**:
+    
+    ```json
+    {
+        "first_name": "Name",
+        "last_name": "Surname",
+        "email": "email@example.com",
+        "phone": "38971111111",
+        "country": "Country",
+        "city": "City",
+        "streetName": "Streetname",
+        "zip_code": "zip",
+        "total_amount": "448",
+        "products": [
+            "10",
+            "9",
+            "8"
+        ]
+    }
+    ```
+
+### Categories
+
+- **Get All Subcategories**
+  - Endpoint: `/categories/sub/all`
+  - Method: GET
+  - Description: Retrieve a list of all subcategories.
+
+- **Get All Categories**
+  - Endpoint: `/categories/all`
+  - Method: GET
+  - Description: Retrieve a list of all main categories.
+
+### Manufacturers
+
+- **Get Manufacturers by Category**
+  - Endpoint: `/manufacturers/{id}`
+  - Method: GET
+  - Description: Retrieve manufacturers associated with a specific category identified by `{id}`.
+
+- **Get All Manufacturers**
+  - Endpoint: `/manufacturers`
+  - Method: GET
+  - Description: Retrieve a list of all manufacturers.
+
+### Filtering
+
+- **Filter Products**
+  - Endpoint: `/products/all`
+  - Method: POST
+  - Description: Filter products based on specific criteria.
+  - Request Body: Specify filter criteria such as category or manufacturers.
+  
+    **Example Request Body**:
+    
+    ```json
+    {
+        "manufacturers": [4],
+        "category": 1,
+        "manufacturersToFilter": [
+            1,
+            2,
+            3,
+            4,
+            1,
+            1,
+            1,
+            1,
+            4,
+            2,
+            4
+        ],
+        "query": ""
+    }
+    ```
+
+For each endpoint, make HTTP requests using the appropriate method (GET or POST) and provide any required parameters or data in the request body, as indicated in the descriptions above.
+
+TechShop Backend (API) empowers your frontend application by providing access to essential data and functionality through these endpoints. Use these endpoints to build dynamic and engaging user experiences within your TechShop platform.
+
+## Project Structure
+
+- **`app/`**: Contains the application's PHP code, including controllers, middleware, and providers.
+  - `Http/`: Processes and defines requests
+      - `Controllers/`: Application controllers
+      - `Middleware/`: 
+      - `Requests/`: Request models
+  - `Models/`: Database models
+  - `Providers/`: Vuex store modules for state management.
+
+- **`bootstrap/`**: Responsible for bootstrapping and initializing the application.
+
+- **`config/`**: Configuration files for various services and components.
+
+- **`database/`**: Includes database migrations and seeders for database setup and population.
+
+- **`public/`**: Publicly accessible assets such as CSS, JavaScript, and images.
+
+- **`resources/`**: Contains Blade templates, language files, and views used in the application.
+
+- **`routes/`**: Houses route definitions and route files that define application endpoints.
+
+- **`storage/`**: Used for temporary and cache storage.
+
+- **`tests/`**: PHPUnit test cases for automated testing.
+
+- **`vendor/`**: Dependencies installed via Composer.
+
+- **`.env`**: Environment-specific configuration file.
+
+- **`.env.example`**: Example environment configuration file.
+
+- **`.gitignore`**: Defines which files and directories should be ignored by Git.
+
+- **`composer.json`**: Composer package and script definitions.
+
+- **`phpunit.xml`**: PHPUnit configuration file.
+
+- **`README.md`**: The documentation file you are currently reading.
+
+This structured organization helps keep the codebase organized and maintainable, allowing for efficient development and scaling of the Laravel application.
+
+## Technologies Used
+
+TechShop Backend (API) is built using a variety of technologies and dependencies to ensure robustness and efficiency. The following technologies and packages are used in this project:
+
+- **PHP 8.0.2**: The programming language used for developing the application.
+
+- **Laravel Framework 9.19**: A powerful and popular PHP framework that provides tools and features for building web applications.
+
+- **Laravel Tinker 2.7**: An interactive REPL (Read-Eval-Print Loop) for Laravel that aids in debugging and testing.
+
+- **Spatie Laravel Ignition 1.0**: A package that provides detailed error pages and insights for debugging Laravel applications.
+
+These technologies and packages collectively enable the development of a secure, efficient, and feature-rich backend API for the TechShop online shopping platform. They are essential components that contribute to the project's functionality and reliability.
+
+## Frontend Application
+
+TechShop Backend (API) serves as the foundation of our online shopping platform, providing essential data and functionalities. While this repository focuses on the backend component, it's important to note that we also have a dedicated frontend application that delivers the user interface and client-side experience.
+
+If you're interested in exploring or contributing to the frontend component, you can find the associated repository here:
+
+- **Frontend Repository**: [Link to Frontend Repository](https://github.com/vladimirstojcheski/tech-shop-fe)
+
+Visiting the frontend repository will give you insights into its features, user interface design, and the technologies used to create an engaging online shopping experience. The synergy between the frontend and backend ensures a complete and user-friendly platform.
+
+Feel free to check out the frontend repository to gain a holistic view of our online shopping solution and explore opportunities for collaboration in the frontend development.
+
+## Contact Information
+
+If you have any questions, suggestions, or feedback regarding TechShop Frontend, please feel free to reach out. We're here to help and improve the application.
+
+- **Email**: [vladimir.stojcheski@students.finki.ukim.mk](mailto:vladimir.stojcheski@students.finki.ukim.mk)
+
+- **GitHub**: [vladimirstojcheski](https://github.com/vladimirstojcheski)
+
+Please don't hesitate to contact us. Your input is valuable to us, and we're always open to collaboration and contributions from the community.
